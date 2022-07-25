@@ -1,5 +1,4 @@
 ﻿using EventBus.Base;
-using EventBus.Base.Abstraction;
 using EventBus.Base.Events;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.ServiceBus.Management;
@@ -17,7 +16,7 @@ namespace EventBus.AzureServiceBus
         private ManagementClient managementClient;
         private ILogger _logger;
 
-        public EventBusServiceBus(IServiceProvider serviceProvider, IEventBusSubscriptionManager eventBusSubscriptionManager, EventBusConfig eventBusConfig) : base(serviceProvider, eventBusConfig)
+        public EventBusServiceBus(IServiceProvider serviceProvider, EventBusConfig eventBusConfig) : base(serviceProvider, eventBusConfig)
         {
             managementClient = new ManagementClient(eventBusConfig.EventBusConnectionString);
             _topicClient = CreateTopicClient();
