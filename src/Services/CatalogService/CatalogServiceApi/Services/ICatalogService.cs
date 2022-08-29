@@ -1,7 +1,8 @@
-﻿using CatalogService.Api.Services.Requests;
-using CatalogService.Api.Services.Responses;
+﻿using CatalogServiceApi.Services.Requests;
+using CatalogServiceApi.Services.Responses;
+using System.Threading.Tasks;
 
-namespace CatalogService.Api.Services
+namespace CatalogServiceApi.Services
 {
     public interface ICatalogService
     {

@@ -1,11 +1,13 @@
-﻿using CatalogService.Api.Core.Application.ViewModels;
-using CatalogService.Api.Core.Domain.Entities;
-using CatalogService.Api.Services;
-using CatalogService.Api.Services.Requests;
+﻿using CatalogServiceApi.Core.Application.ViewModels;
+using CatalogServiceApi.Core.Domain.Entities;
+using CatalogServiceApi.Services;
+using CatalogServiceApi.Services.Requests;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Net;
+using System.Threading.Tasks;
 
-namespace CatalogService.Api.Controllers
+namespace CatalogServiceApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

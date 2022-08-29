@@ -1,12 +1,16 @@
-﻿using CatalogService.Api.Core.Domain.Entities;
-using CatalogService.Api.Infrastructure;
-using CatalogService.Api.Infrastructure.Context;
-using CatalogService.Api.Services.Requests;
-using CatalogService.Api.Services.Responses;
+﻿using CatalogServiceApi.Core.Domain.Entities;
+using CatalogServiceApi.Infrastructure;
+using CatalogServiceApi.Infrastructure.Context;
+using CatalogServiceApi.Services.Requests;
+using CatalogServiceApi.Services.Responses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace CatalogService.Api.Services
+namespace CatalogServiceApi.Services
 {
     public class CatalogService : ICatalogService
     {
@@ -21,7 +25,7 @@ namespace CatalogService.Api.Services
             catalogContext.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
-        public async Task<CatalogItemListResponse> GetCatalogItem(GetCatalogItemRequest getCatalogItemRequest)
+        public async Task<CatalogItemListResponse> GetCatalogItemAsync(GetCatalogItemRequest getCatalogItemRequest)
         {
             IQueryable<CatalogItem> catalogItemQueryable = _catalogContext.CatalogItems.AsQueryable();
 
@@ -71,7 +75,7 @@ namespace CatalogService.Api.Services
             };
         }
 
-        public async Task<int> PostCatalogItem(PostCatalogItemRequest postCatalogItemRequest)
+        public async Task<int> PostCatalogItemAsync(PostCatalogItemRequest postCatalogItemRequest)
         {
             var catalogItem = new CatalogItem
             {
@@ -90,7 +94,7 @@ namespace CatalogService.Api.Services
             return catalogItem.Id;
         }
 
-        public async Task<int> UpdateCatalogItem(PatchCatalogItemRequest patchCatalogItemRequest)
+        public async Task<int> UpdateCatalogItemAsync(PatchCatalogItemRequest patchCatalogItemRequest)
         {
             var catalogItem = await _catalogContext.CatalogItems.SingleOrDefaultAsync(i => i.Id == patchCatalogItemRequest.Id);
 
@@ -180,6 +184,20 @@ namespace CatalogService.Api.Services
             }
 
             return items;
+        }
+
+        public async Task DeleteCatalogItemAsync(int id)
+        {
+            var catalogItem = _catalogContext.CatalogItems.SingleOrDefault(x => x.Id == id);
+
+            if (catalogItem == null)
+            {
+                throw new Exception($"Item couldn't found with id: {id}");
+            }
+
+            _catalogContext.CatalogItems.Remove(catalogItem);
+
+            await _catalogContext.SaveChangesAsync();
         }
     }
 }
