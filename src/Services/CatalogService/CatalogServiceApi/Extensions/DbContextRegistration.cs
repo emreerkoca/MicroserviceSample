@@ -18,7 +18,7 @@ namespace CatalogServiceApi.Extensions
                     options.UseSqlServer(configuration["ConnectionString"],
                                          sqlServerOptionsAction: sqlOptions =>
                                          {
-                                             sqlOptions.MigrationsAssembly(typeof(CatalogBrandEntityTypeConfiguration).GetTypeInfo().Assembly.GetName().Name);
+                                             sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
                                              sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
                                          });
                 });

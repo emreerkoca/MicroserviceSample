@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace CatalogServiceApi.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class PictureController : Controller
     {
         private readonly IWebHostEnvironment _env;
@@ -53,11 +55,6 @@ namespace CatalogServiceApi.Controllers
             }
 
             return NotFound();
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
 
         private string GetImageMimeTypeFromImageFileExtension(string extension)

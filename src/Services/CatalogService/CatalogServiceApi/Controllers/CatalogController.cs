@@ -20,11 +20,6 @@ namespace CatalogServiceApi.Controllers
             _catalogService = catalogService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         [Route("items")]
         [ProducesResponseType(typeof(PaginatedItemsViewModel<CatalogItem>), (int)HttpStatusCode.OK)]
