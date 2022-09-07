@@ -37,7 +37,7 @@ namespace EventBus.Base.SubManagers
 
             if (!_eventTypes.Contains(typeof(T)))
             {
-                _eventTypes.Add(typeof(THandler));
+                _eventTypes.Add(typeof(T));
             }
         }
 
