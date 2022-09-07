@@ -19,21 +19,26 @@ namespace EventBus.RabbitMQ
 
         public EventBusRabbitMQ(IServiceProvider serviceProvider, EventBusConfig eventBusConfig) : base(serviceProvider, eventBusConfig)
         {
-            if (eventBusConfig.Connection != null)
+            if (EventBusConfig.Connection != null)
             {
-                var connectionJson = JsonConvert.SerializeObject(eventBusConfig.Connection, new JsonSerializerSettings()
+                if (EventBusConfig.Connection is ConnectionFactory)
+                    _connectionFactory = EventBusConfig.Connection as ConnectionFactory;
+                else
                 {
-                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-                });
+                    var connJson = JsonConvert.SerializeObject(EventBusConfig.Connection, new JsonSerializerSettings()
+                    {
+                        // Self referencing loop detected for property 
+                        ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                    });
 
-                _connectionFactory = JsonConvert.DeserializeObject<ConnectionFactory>(connectionJson);
+                    _connectionFactory = JsonConvert.DeserializeObject<ConnectionFactory>(connJson);
+                }
             }
             else
-            {
-                _connectionFactory = new ConnectionFactory();
-            }
+                _connectionFactory = new ConnectionFactory(); //Create with default values
 
             rabbitMQPersistentConnection = new RabbitMQPersistentConnection(_connectionFactory, eventBusConfig.ConnectionRetryCount);
+
             _consumerChannel = CreateConsumerChannel();
 
             _eventBusSubscriptionManager.OnEventRemoved += _eventBusSubscriptionManager_OnEventRemoved;
@@ -85,12 +90,6 @@ namespace EventBus.RabbitMQ
             {
                 var properties = _consumerChannel.CreateBasicProperties();
                 properties.DeliveryMode = 2;
-
-                _consumerChannel.QueueDeclare(queue: GetSubName(eventName),
-                    durable: true,
-                    exclusive: false,
-                    autoDelete: false,
-                    arguments: null);
 
                 _consumerChannel.BasicPublish(
                     exchange: EventBusConfig.DefaultTopicName,
