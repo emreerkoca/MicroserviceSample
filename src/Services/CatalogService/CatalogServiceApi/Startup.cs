@@ -35,6 +35,8 @@ namespace CatalogServiceApi
             services.ConfigureConsul(Configuration);
 
             services.AddScoped<ICatalogService, CatalogService>();
+
+            services.ConfigureConsul(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,7 +60,7 @@ namespace CatalogServiceApi
                 endpoints.MapControllers();
             });
 
-            //app.RegisterWithConsul(lifeTime, Configuration);
+            app.RegisterWithConsul(lifeTime, Configuration);
         }
     }
 }
