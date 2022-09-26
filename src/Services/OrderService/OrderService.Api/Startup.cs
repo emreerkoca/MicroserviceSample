@@ -1,16 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using EventBus.Base;
+using EventBus.Base.Abstraction;
+using EventBus.Factory;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using OrderService.Api.Extensions.Registration;
+using OrderService.Api.Extensions.Registration.Consul;
+using OrderService.Api.IntegrationEvents.EventHandlers;
+using OrderService.Api.IntegrationEvents.Events;
+using OrderService.Application;
+using OrderService.Infrastructure;
+using RabbitMQ.Client;
 
 namespace OrderService.Api
 {
@@ -31,6 +35,33 @@ namespace OrderService.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OrderService.Api", Version = "v1" });
+            });
+
+            services.AddLogging(configure => configure.AddConsole())
+                .AddApplicationRegistration(typeof(Startup))
+                .AddInfrastructureRegistration(Configuration)
+                .ConfigureEventHandlers()
+                .AddServiceDiscoveryRegistration(Configuration);
+
+            services.AddSingleton(sp =>
+            {
+                EventBusConfig config = new()
+                {
+                    ConnectionRetryCount = 5,
+                    EventNameSuffix = "IntegrationEvent",
+                    SubscriberClientAppName = "OrderService",
+                    Connection = new ConnectionFactory()
+                    {
+                        HostName = "localhost",
+                        Port = 15672,
+                        UserName = "guest",
+                        Password = "guest"
+                    },
+                    EventBusType = EventBusType.RabbitMQ,
+
+                };
+
+                return EventBusFactory.Create(config, sp);
             });
         }
 
@@ -54,6 +85,10 @@ namespace OrderService.Api
             {
                 endpoints.MapControllers();
             });
+
+            var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
+
+            eventBus.Subscribe<OrderCreatedIntegrationEvent, OrderCreatedIntegrationEventHandler>();
         }
     }
 }
