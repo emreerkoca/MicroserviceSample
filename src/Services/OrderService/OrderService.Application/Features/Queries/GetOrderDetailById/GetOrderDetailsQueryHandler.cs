@@ -22,7 +22,6 @@ namespace OrderService.Application.Features.Queries.GetOrderDetailById
         public async Task<OrderDetailViewModel> Handle(GetOrderDetailsQuery request, CancellationToken cancellationToken)
         {
             var order = await _orderRepository.GetByIdAsync(request.OrderId, i => i.OrderItems);
-
             var result = _mapper.Map<OrderDetailViewModel>(order);
 
             return result;
