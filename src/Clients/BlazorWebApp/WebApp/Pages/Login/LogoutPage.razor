@@ -1,0 +1,24 @@
+﻿@page "/logout"
+
+@using System.Web;
+@using WebApp.Application.Services.Interfaces
+
+<h3>Logout</h3>
+
+@code {
+    [Inject]
+    IIdentityService _identityService { get; set; }
+    [Inject]
+    NavigationManager navigationManager { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _identityService.Logout();
+
+        var collection = HttpUtility.ParseQueryString(new Uri(navigationManager.Uri).Query);
+        string returnUrl = collection.Get("returnUrl") ?? "/";
+        
+        navigationManager.NavigateTo(returnUrl);
+    }
+
+}
