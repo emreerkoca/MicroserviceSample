@@ -17,7 +17,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web.ApiGateway.Extensions;
 using Web.ApiGateway.Infrastructure;
+using Web.ApiGateway.Services;
+using Web.ApiGateway.Services.Interfaces;
 
 namespace Web.ApiGateway
 {
@@ -39,7 +42,10 @@ namespace Web.ApiGateway
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web.ApiGateway", Version = "v1" });
             });
 
-            //services.ConfigureAuth(Configuration);
+            services.AddScoped<ICatalogService, CatalogService>();
+            services.AddScoped<IBasketService, BasketService>();
+
+            services.ConfigureAuth(Configuration);
 
             services.AddOcelot().AddConsul();
 
