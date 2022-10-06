@@ -50,15 +50,14 @@ namespace OrderService.Api
                     ConnectionRetryCount = 5,
                     EventNameSuffix = "IntegrationEvent",
                     SubscriberClientAppName = "OrderService",
+                    EventBusType = EventBusType.RabbitMQ,
                     Connection = new ConnectionFactory()
                     {
                         HostName = "localhost",
-                        Port = 15672,
-                        UserName = "guest",
-                        Password = "guest"
+                        //Port = 15672,
+                        //UserName = "guest",
+                        //Password = "guest"
                     },
-                    EventBusType = EventBusType.RabbitMQ,
-
                 };
 
                 return EventBusFactory.Create(config, sp);

@@ -33,6 +33,18 @@ namespace CatalogServiceApi.Controllers
             return Ok(model);
         }
 
+        [HttpGet]
+        [Route("items/{id:int}")]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(CatalogItem), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<CatalogItem>> ItemByIdAsync(int id)
+        {
+            var result = await _catalogService.GetCatalogItemByIdAsync(id);
+
+            return result;
+        }
+
         [Route("items")]
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Created)]

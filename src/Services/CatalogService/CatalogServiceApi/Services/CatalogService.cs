@@ -75,6 +75,22 @@ namespace CatalogServiceApi.Services
             };
         }
 
+        public async Task<CatalogItem> GetCatalogItemByIdAsync(int id)
+        {
+
+            var item = await _catalogContext.CatalogItems.SingleOrDefaultAsync(ci => ci.Id == id);
+            var baseUri = _catalogSettings.PicBaseUrl;
+
+            if (item != null)
+            {
+                item.PictureUri = baseUri + item.PictureFileName;
+
+                return item;
+            }
+
+            throw new Exception($"Item with id {id} not found.");
+        }
+
         public async Task<int> PostCatalogItemAsync(PostCatalogItemRequest postCatalogItemRequest)
         {
             var catalogItem = new CatalogItem
@@ -199,5 +215,7 @@ namespace CatalogServiceApi.Services
 
             await _catalogContext.SaveChangesAsync();
         }
+
+        
     }
 }

@@ -11,7 +11,7 @@ namespace Web.ApiGateway.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class BasketController : Controller
     {
         private readonly ICatalogService _catalogService;

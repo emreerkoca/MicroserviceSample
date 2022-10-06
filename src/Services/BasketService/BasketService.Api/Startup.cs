@@ -85,19 +85,11 @@ namespace BasketService.Api
                     EventBusType = EventBusType.RabbitMQ,
                     Connection = new ConnectionFactory()
                     {
-                        HostName = "localhost"
-                        //HostName = "localhost",
+                        HostName = "localhost",
                         //Port = 15672,
                         //UserName = "guest",
-                        //Password = "guest",
-                        //VirtualHost="/"
+                        //Password = "guest"
                     }
-
-                    //Connection = new ConnectionFactory()
-                    //{
-                    //    //HostName = "c_rabbitmq"
-                    //    HostName = "http://localhost:15672"
-                    //}
                 };
 
                 return EventBusFactory.Create(config, sp);  
