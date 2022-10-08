@@ -39,12 +39,6 @@ namespace BasketService.Api
 
         public static void Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(serilogConfiguration)
-                .CreateLogger();
-
-            Log.Logger.Information("Application is Running....");
-
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -60,7 +54,8 @@ namespace BasketService.Api
                 {
                     webBuilder.UseStartup<Startup>();
                 })
-                .ConfigureLogging(i => i.ClearProviders())
-                .UseSerilog();
+                .ConfigureLogging(loggingConfiguration => loggingConfiguration.ClearProviders())
+                .UseSerilog((hostingContext, loggingConfiguration) => 
+                    loggingConfiguration.ReadFrom.Configuration(serilogConfiguration));
     }
 }
