@@ -8,7 +8,7 @@ namespace CatalogServiceApi.Infrastructure.Context
         public CatalogContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<CatalogContext>()
-                .UseSqlServer("Server=(localdb)\\mssqllocaldb;Integrated Security=true;Initial Catalog=MicroserviceSampleDb;");
+                .UseSqlServer("Server=localhost,1433;Integrated Security=true;Initial Catalog=MicroserviceSampleCatalog;User ID=sa;Password=123456!");
 
             return new CatalogContext(optionsBuilder.Options);
         }
