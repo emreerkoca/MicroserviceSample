@@ -1,81 +1,88 @@
 version: '3.4'
 
 services:
-  orderservice.api:
-    container_name: container_orderservice
-    image: ${DOCKER_REGISTRY-}orderserviceapi
-    build:
-      context: .
-      dockerfile: src/Services/OrderService/OrderService.Api/Dockerfile
+    s_redis:
+        container_name: container_redis
+        image: redis
 
-  basketservice.api:
-    container_name: container_basketservice
-    image: ${DOCKER_REGISTRY-}basketserviceapi
-    build:
-      context: .
-      dockerfile: src/Services/BasketService/BasketService.Api/Dockerfile
+    rabbitmq:
+        container_name: container_rabbitmq
+        image: rabbitmq:3.11-alpine
+        hostname: container_rabbitmq
 
-
-  catalogserviceapi:
-    container_name: container_catalogservice
-    image: ${DOCKER_REGISTRY-}catalogserviceapi
-    build:
-      context: .
-      dockerfile: src/Services/CatalogService/CatalogServiceApi/Dockerfile
-
-
-  identityservice.api:
-    container_name: container_identityservice
-    image: ${DOCKER_REGISTRY-}identityserviceapi
-    build:
-      context: .
-      dockerfile: src/Services/IdentityService/IdentityService.Api/Dockerfile
-
-
-  notificationservice:
-    container_name: container_notificationservice
-    image: ${DOCKER_REGISTRY-}notificationservice
-    build:
-      context: .
-      dockerfile: src/Services/NotificationService/NotificationService/Dockerfile
-
-
-  paymentservice.api:
-    container_name: container_paymentservice
-    image: ${DOCKER_REGISTRY-}paymentserviceapi
-    build:
-      context: .
-      dockerfile: src/Services/PaymentService/PaymentService.Api/Dockerfile
-
-
-  web.apigateway:
-    container_name: container_webapigateway
-    image: ${DOCKER_REGISTRY-}webapigateway
-    build:
-      context: .
-      dockerfile: src/ApiGateways/WebApiGateway/Web.ApiGateway/Dockerfile
-
-
-  webapp:
-    container_name: container_blazoruiapp
-    image: ${DOCKER_REGISTRY-}webapp
-    build:
-      context: .
-      dockerfile: src/Clients/BlazorWebApp/WebApp/Dockerfile
-
-
-  s_redis:
-    container_name: container_redis
-    image: redis
-
-  s_rabbitmq:
-    container_name: container_rabbitmq
-    image: rabbitmq:3-management
-
-  s_sqlserver:
-    container_name: container_sqlserver
-    image: mcr.microsoft.com/mssql/server:2019-latest
+    s_sqlserver:
+        container_name: container_sqlserver
+        image: mcr.microsoft.com/mssql/server:2019-latest
         
-  s_consul:
-    container_name: container_consul
-    image: consul  
+    s_consul:
+        container_name: container_consul
+        image: consul 
+
+    orderservice.api:
+        container_name: container_orderservice
+        image: ${DOCKER_REGISTRY-}orderserviceapi
+        build:
+            context: .
+            dockerfile: src/Services/OrderService/OrderService.Api/Dockerfile
+
+    #basketservice.api:
+    #    container_name: container_basketservice
+    #    image: ${DOCKER_REGISTRY-}basketserviceapi
+    #    build:
+    #        context: .
+    #        dockerfile: src/Services/BasketService/BasketService.Api/Dockerfile
+
+
+    #catalogserviceapi:
+    #    container_name: container_catalogservice
+    #    image: ${DOCKER_REGISTRY-}catalogserviceapi
+    #    build:
+    #        context: .
+    #        dockerfile: src/Services/CatalogService/CatalogServiceApi/Dockerfile
+
+
+    #identityservice.api:
+    #    container_name: container_identityservice
+    #    image: ${DOCKER_REGISTRY-}identityserviceapi
+    #    build:
+    #        context: .
+    #        dockerfile: src/Services/IdentityService/IdentityService.Api/Dockerfile
+
+
+    #notificationservice:
+    #    container_name: container_notificationservice
+    #    image: ${DOCKER_REGISTRY-}notificationservice
+    #    build:
+    #        context: .
+    #        dockerfile: src/Services/NotificationService/NotificationService/Dockerfile
+
+
+    #paymentservice.api:
+    #    container_name: container_paymentservice
+    #    image: ${DOCKER_REGISTRY-}paymentserviceapi
+    #    build:
+    #        context: .
+    #        dockerfile: src/Services/PaymentService/PaymentService.Api/Dockerfile
+
+
+    #web.apigateway:
+    #    container_name: container_webapigateway
+    #    image: ${DOCKER_REGISTRY-}webapigateway
+    #    build:
+    #        context: .
+    #        dockerfile: src/ApiGateways/WebApiGateway/Web.ApiGateway/Dockerfile
+
+
+    #webapp:
+    #    container_name: container_blazoruiapp
+    #    image: ${DOCKER_REGISTRY-}webapp
+    #    build:
+    #        context: .
+    #        dockerfile: src/Clients/BlazorWebApp/WebApp/Dockerfile
+
+    #sampleservice:
+    #    container_name: container_sampleservice
+    #    image: ${DOCKER_REGISTRY-}sampleservice
+    #    build:
+    #        context: .
+    #        dockerfile: src/Services/SampleService/SampleService/Dockerfile

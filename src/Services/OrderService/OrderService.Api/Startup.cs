@@ -53,10 +53,10 @@ namespace OrderService.Api
                     EventBusType = EventBusType.RabbitMQ,
                     Connection = new ConnectionFactory()
                     {
-                        HostName = "localhost",
-                        //Port = 15672,
-                        //UserName = "guest",
-                        //Password = "guest"
+                        HostName = "container_rabbitmq",
+                        Port = 5672,
+                        UserName = "guest",
+                        Password = "guest"
                     },
                 };
 
