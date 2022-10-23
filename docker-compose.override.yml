@@ -60,7 +60,7 @@ services:
     networks:
       - net_backendservices
     depends_on:
-      #- web.apigateway
+      - web.apigateway
       - s_sqlserver
       - s_consul
       - rabbitmq
@@ -71,90 +71,90 @@ services:
       - s_sqlserver
   
       
-  #basketservice.api:
-  #  environment:
-  #    - ASPNETCORE_ENVIRONMENT=Development
-  #    - ASPNETCORE_URLS=http://+:5003
-  #    - ConsulConfig__Address=http://s_consul:8500
-  #    - ConsulConfig__ServiceAddress=http://container_basketservice:5003
-  #    - ConsulConfig__ServiceName=BasketService
-  #    - ConsulConfig__ServiceId=Basket
-  #  ports:
-  #    - "5003:5003"
-  #  networks:
-  #    - net_backendservices
-  #  depends_on:
-  #    - web.apigateway
-  #    - s_redis
-  #    - s_consul
-  #    - s_rabbitmq
-  #  external_links:
-  #    - container_graylog
-  #    - s_consul
-  #    - s_rabbitmq
-  #    - s_redis
+  basketservice.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5003
+      - ConsulConfig__Address=http://s_consul:8500
+      - ConsulConfig__ServiceAddress=http://container_basketservice:5003
+      - ConsulConfig__ServiceName=BasketService
+      - ConsulConfig__ServiceId=Basket
+    ports:
+      - "5003:5003"
+    networks:
+      - net_backendservices
+    depends_on:
+      - web.apigateway
+      - s_redis
+      - s_consul
+      - rabbitmq
+    external_links:
+      - container_graylog
+      - s_consul
+      - rabbitmq
+      - s_redis
 
 
-  #catalogserviceapi:
-  #  environment:
-  #    - ASPNETCORE_ENVIRONMENT=Development
-  #    - ASPNETCORE_URLS=http://+:5004
-  #    - ConsulConfig__Address=http://s_consul:8500
-  #    - ConsulConfig__ServiceAddress=http://container_catalogservice:5004
-  #    - ConsulConfig__ServiceName=CatalogService
-  #    - ConsulConfig__ServiceId=Catalog
-  #  ports:
-  #    - "5004:5004"
-  #  networks:
-  #    - net_backendservices
-  #  depends_on:
-  #    - web.apigateway
-  #    - s_sqlserver
-  #    - s_consul
-  #    - s_rabbitmq
-  #  external_links:
-  #    - container_graylog
-  #    - s_consul
-  #    - s_rabbitmq
-  #    - s_sqlserver
+  catalogserviceapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5004
+      - ConsulConfig__Address=http://s_consul:8500
+      - ConsulConfig__ServiceAddress=http://container_catalogservice:5004
+      - ConsulConfig__ServiceName=CatalogService
+      - ConsulConfig__ServiceId=Catalog
+    ports:
+      - "5004:5004"
+    networks:
+      - net_backendservices
+    depends_on:
+      - web.apigateway
+      - s_sqlserver
+      - s_consul
+      - rabbitmq
+    external_links:
+      - container_graylog
+      - s_consul
+      - rabbitmq
+      - s_sqlserver
 
-  #identityservice.api:
-  #  environment:
-  #    - ASPNETCORE_ENVIRONMENT=Development
-  #    - ASPNETCORE_URLS=http://+:5005
-  #    - ConsulConfig__Address=http://s_consul:8500
-  #    - ConsulConfig__ServiceAddress=http://container_identityservice:5005
-  #    - ConsulConfig__ServiceName=IdentityService
-  #    - ConsulConfig__ServiceId=Identity
-  #  ports:
-  #    - "5005:5005"
-  #  networks:
-  #    - net_backendservices
-  #  depends_on:
-  #    - web.apigateway
-  #    - s_sqlserver
-  #    - s_consul
-  #    - s_rabbitmq
-  #  external_links:
-  #    - container_graylog
-  #    - s_consul
-  #    - s_rabbitmq
-  #    - s_sqlserver
+  identityservice.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5005
+      - ConsulConfig__Address=http://s_consul:8500
+      - ConsulConfig__ServiceAddress=http://container_identityservice:5005
+      - ConsulConfig__ServiceName=IdentityService
+      - ConsulConfig__ServiceId=Identity
+    ports:
+      - "5005:5005"
+    networks:
+      - net_backendservices
+    depends_on:
+      - web.apigateway
+      - s_sqlserver
+      - s_consul
+      - rabbitmq
+    external_links:
+      - container_graylog
+      - s_consul
+      - rabbitmq
+      - s_sqlserver
 
-  #paymentservice.api:
-  #  environment:
-  #    - ASPNETCORE_ENVIRONMENT=Development
-  #    - ASPNETCORE_URLS=http://+:5001
-  #  ports:
-  #    - "5001"
-  #  networks:
-  #    - net_backendservices
-  #  depends_on:
-  #    - s_rabbitmq
-  #  external_links:
-  #    - container_graylog
-  #    - s_consul
-  #    - s_rabbitmq
+  paymentservice.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5001
+    ports:
+      - "5001"
+    networks:
+      - net_backendservices
+    depends_on:
+      - rabbitmq
+    external_links:
+      - container_graylog
+      - s_consul
+      - rabbitmq
 
   #notificationservice:
   #  tty: true
@@ -163,21 +163,21 @@ services:
   #  networks:
   #    - net_backendservices
   #  depends_on:
-  #    - s_rabbitmq
+  #    - rabbitmq
   #  external_links:
   #    - container_graylog
   #    - s_consul
-  #    - s_rabbitmq
+  #    - rabbitmq
 
-  #web.apigateway:
-  #  environment:
-  #    - ASPNETCORE_ENVIRONMENT=Development
-  #    - ASPNETCORE_URLS=http://+:5000
-  #  ports:
-  #    - "5000:5000"
-  #  networks:
-  #    - net_apigateway
-  #    - net_backendservices
+  web.apigateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - "5000:5000"
+    networks:
+      - net_apigateway
+      - net_backendservices
 
   #webapp:
   #  environment:
@@ -187,14 +187,6 @@ services:
   #  networks:
   #    - net_frontend
   #    - net_apigateway
-   
-  #sampleservice:
-  #  environment:
-  #    - ASPNETCORE_ENVIRONMENT=Development
-  #  ports:
-  #    - "5009:5009"
-  #  networks:
-  #    - net_backendservices
 
 networks:
   net_apigateway:

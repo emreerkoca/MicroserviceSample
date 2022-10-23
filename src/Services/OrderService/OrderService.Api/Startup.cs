@@ -65,7 +65,7 @@ namespace OrderService.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IHostApplicationLifetime lifetime)
         {
             if (env.IsDevelopment())
             {
@@ -84,6 +84,8 @@ namespace OrderService.Api
             {
                 endpoints.MapControllers();
             });
+
+            app.RegisterWithConsul(lifetime, Configuration);
 
             var eventBus = app.ApplicationServices.GetRequiredService<IEventBus>();
 

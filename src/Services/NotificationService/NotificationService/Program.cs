@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NotificationService.IntegrationEvents.EventHandlers;
 using PaymentService.Api.IntegrationEvents.Events;
+using RabbitMQ.Client;
 using Serilog;
 using System;
 
@@ -50,10 +51,13 @@ namespace NotificationService
                     EventNameSuffix = "IntegrationEvent",
                     SubscriberClientAppName = "NotificationService",
                     EventBusType = EventBusType.RabbitMQ,
-                    //Connection = new ConnectionFactory()
-                    //{
-                    //    HostName = "c_rabbitmq"
-                    //}
+                    Connection = new ConnectionFactory()
+                    {
+                        HostName = "container_rabbitmq",
+                        Port = 5672,
+                        UserName = "guest",
+                        Password = "guest"
+                    }
                 };
 
                 return EventBusFactory.Create(config, sp);

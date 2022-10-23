@@ -25,28 +25,28 @@ services:
             context: .
             dockerfile: src/Services/OrderService/OrderService.Api/Dockerfile
 
-    #basketservice.api:
-    #    container_name: container_basketservice
-    #    image: ${DOCKER_REGISTRY-}basketserviceapi
-    #    build:
-    #        context: .
-    #        dockerfile: src/Services/BasketService/BasketService.Api/Dockerfile
+    basketservice.api:
+        container_name: container_basketservice
+        image: ${DOCKER_REGISTRY-}basketserviceapi
+        build:
+            context: .
+            dockerfile: src/Services/BasketService/BasketService.Api/Dockerfile
 
 
-    #catalogserviceapi:
-    #    container_name: container_catalogservice
-    #    image: ${DOCKER_REGISTRY-}catalogserviceapi
-    #    build:
-    #        context: .
-    #        dockerfile: src/Services/CatalogService/CatalogServiceApi/Dockerfile
+    catalogserviceapi:
+        container_name: container_catalogservice
+        image: ${DOCKER_REGISTRY-}catalogserviceapi
+        build:
+            context: .
+            dockerfile: src/Services/CatalogService/CatalogServiceApi/Dockerfile
 
 
-    #identityservice.api:
-    #    container_name: container_identityservice
-    #    image: ${DOCKER_REGISTRY-}identityserviceapi
-    #    build:
-    #        context: .
-    #        dockerfile: src/Services/IdentityService/IdentityService.Api/Dockerfile
+    identityservice.api:
+        container_name: container_identityservice
+        image: ${DOCKER_REGISTRY-}identityserviceapi
+        build:
+            context: .
+            dockerfile: src/Services/IdentityService/IdentityService.Api/Dockerfile
 
 
     #notificationservice:
@@ -57,21 +57,20 @@ services:
     #        dockerfile: src/Services/NotificationService/NotificationService/Dockerfile
 
 
-    #paymentservice.api:
-    #    container_name: container_paymentservice
-    #    image: ${DOCKER_REGISTRY-}paymentserviceapi
-    #    build:
-    #        context: .
-    #        dockerfile: src/Services/PaymentService/PaymentService.Api/Dockerfile
+    paymentservice.api:
+        container_name: container_paymentservice
+        image: ${DOCKER_REGISTRY-}paymentserviceapi
+        build:
+            context: .
+            dockerfile: src/Services/PaymentService/PaymentService.Api/Dockerfile
 
 
-    #web.apigateway:
-    #    container_name: container_webapigateway
-    #    image: ${DOCKER_REGISTRY-}webapigateway
-    #    build:
-    #        context: .
-    #        dockerfile: src/ApiGateways/WebApiGateway/Web.ApiGateway/Dockerfile
-
+    web.apigateway:
+        container_name: container_webapigateway
+        image: ${DOCKER_REGISTRY-}webapigateway
+        build:
+            context: .
+            dockerfile: src/ApiGateways/WebApiGateway/Web.ApiGateway/Dockerfile
 
     #webapp:
     #    container_name: container_blazoruiapp
@@ -79,10 +78,3 @@ services:
     #    build:
     #        context: .
     #        dockerfile: src/Clients/BlazorWebApp/WebApp/Dockerfile
-
-    #sampleservice:
-    #    container_name: container_sampleservice
-    #    image: ${DOCKER_REGISTRY-}sampleservice
-    #    build:
-    #        context: .
-    #        dockerfile: src/Services/SampleService/SampleService/Dockerfile
