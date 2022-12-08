@@ -56,8 +56,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogServiceApi", "src\Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentService.Api", "src\Services\PaymentService\PaymentService.Api\PaymentService.Api.csproj", "{A3B174AE-1251-4712-8839-F7A7B4A3FB6D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationService", "src\Services\NotificationService\NotificationService\NotificationService.csproj", "{9AC78EAE-4BE2-4BC7-AF1F-60990F0A0824}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityService.Api", "src\Services\IdentityService\IdentityService.Api\IdentityService.Api.csproj", "{B3107AC8-F7E9-4691-9EB8-D26EF1083540}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BasketService.Api", "src\Services\BasketService\BasketService.Api\BasketService.Api.csproj", "{D0EE5379-FDC2-461F-9093-26506D5E0039}"
@@ -95,6 +93,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "redis", "redis", "{6C6C55EC
 	ProjectSection(SolutionItems) = preProject
 		docker-compose-files\redis\docker-compose.yml = docker-compose-files\redis\docker-compose.yml
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationServicee", "src\Services\NotificationService\NotificationServicee\NotificationServicee.csproj", "{B2D658B3-8D33-47EE-83BA-EA761ABA6AC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -134,10 +134,6 @@ Global
 		{A3B174AE-1251-4712-8839-F7A7B4A3FB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3B174AE-1251-4712-8839-F7A7B4A3FB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3B174AE-1251-4712-8839-F7A7B4A3FB6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AC78EAE-4BE2-4BC7-AF1F-60990F0A0824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AC78EAE-4BE2-4BC7-AF1F-60990F0A0824}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AC78EAE-4BE2-4BC7-AF1F-60990F0A0824}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AC78EAE-4BE2-4BC7-AF1F-60990F0A0824}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B3107AC8-F7E9-4691-9EB8-D26EF1083540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B3107AC8-F7E9-4691-9EB8-D26EF1083540}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3107AC8-F7E9-4691-9EB8-D26EF1083540}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -170,6 +166,10 @@ Global
 		{97BD29E1-004C-4A83-942F-5DC41DB84363}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97BD29E1-004C-4A83-942F-5DC41DB84363}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97BD29E1-004C-4A83-942F-5DC41DB84363}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2D658B3-8D33-47EE-83BA-EA761ABA6AC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2D658B3-8D33-47EE-83BA-EA761ABA6AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2D658B3-8D33-47EE-83BA-EA761ABA6AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2D658B3-8D33-47EE-83BA-EA761ABA6AC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -197,7 +197,6 @@ Global
 		{B2A9AFCD-5D45-427A-AD07-F776D1D1C866} = {5D76ADEF-37FE-4253-8419-F656C5169E33}
 		{63C73E8A-54F8-4374-87AD-53C512F6993A} = {D52669E9-749C-4F2F-B385-407846C484F8}
 		{A3B174AE-1251-4712-8839-F7A7B4A3FB6D} = {98AC5426-2EBC-4D94-B3E9-4A78D542A85C}
-		{9AC78EAE-4BE2-4BC7-AF1F-60990F0A0824} = {5E600E4D-8D88-4607-8A7E-E7E6A74493A0}
 		{B3107AC8-F7E9-4691-9EB8-D26EF1083540} = {6655D903-7CBF-4CD2-BC74-6407CF466C98}
 		{D0EE5379-FDC2-461F-9093-26506D5E0039} = {A0180DC7-F1D8-4691-959D-EE3D2D5B9174}
 		{BDB78A64-D7D6-4C34-984A-7C7A4FCC68D7} = {62B6FF35-A853-4E63-9331-136E5B719F9B}
@@ -209,6 +208,7 @@ Global
 		{7744F709-2469-49CD-8C0E-ECC7D4926454} = {0438980D-9AF7-4D7F-998B-34A71CDEBDB8}
 		{D242208F-ACAB-41BA-BA04-C9D0F20CC101} = {0438980D-9AF7-4D7F-998B-34A71CDEBDB8}
 		{6C6C55EC-4030-446F-BAEE-070F76E94DA3} = {0438980D-9AF7-4D7F-998B-34A71CDEBDB8}
+		{B2D658B3-8D33-47EE-83BA-EA761ABA6AC3} = {5E600E4D-8D88-4607-8A7E-E7E6A74493A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D05C7A21-5FDA-47DD-A2F5-96080236D452}
