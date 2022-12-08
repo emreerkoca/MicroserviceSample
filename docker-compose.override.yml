@@ -156,19 +156,6 @@ services:
       - s_consul
       - rabbitmq
 
-  #notificationservice:
-  #  tty: true
-  #  environment:
-  #    - ASPNETCORE_ENVIRONMENT=Development
-  #  networks:
-  #    - net_backendservices
-  #  depends_on:
-  #    - rabbitmq
-  #  external_links:
-  #    - container_graylog
-  #    - s_consul
-  #    - rabbitmq
-
   web.apigateway:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
@@ -178,6 +165,19 @@ services:
     networks:
       - net_apigateway
       - net_backendservices
+
+  notificationservicee:
+    tty: true
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - net_backendservices
+    depends_on:
+      - rabbitmq
+    external_links:
+      - container_graylog
+      - s_consul
+      - rabbitmq
 
   #webapp:
   #  environment:

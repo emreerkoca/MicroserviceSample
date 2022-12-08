@@ -3,7 +3,7 @@ using PaymentService.Api.IntegrationEvents.Events;
 using Serilog;
 using System.Threading.Tasks;
 
-namespace NotificationService.IntegrationEvents.EventHandlers
+namespace NotificationServicee.IntegrationEvents.EventHandlers
 {
     public class OrderPaymentFailedIntegrationEventHandler : IIntegrationEventHandler<OrderPaymentFailedIntegrationEvent>
     {

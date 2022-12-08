@@ -7,8 +7,8 @@ services:
 
     rabbitmq:
         container_name: container_rabbitmq
-        image: rabbitmq:3.11-alpine
-        hostname: container_rabbitmq
+        image: rabbitmq:3-management-alpine
+        hostname: container_rabbitmq 
 
     s_sqlserver:
         container_name: container_sqlserver
@@ -48,15 +48,6 @@ services:
             context: .
             dockerfile: src/Services/IdentityService/IdentityService.Api/Dockerfile
 
-
-    #notificationservice:
-    #    container_name: container_notificationservice
-    #    image: ${DOCKER_REGISTRY-}notificationservice
-    #    build:
-    #        context: .
-    #        dockerfile: src/Services/NotificationService/NotificationService/Dockerfile
-
-
     paymentservice.api:
         container_name: container_paymentservice
         image: ${DOCKER_REGISTRY-}paymentserviceapi
@@ -64,13 +55,19 @@ services:
             context: .
             dockerfile: src/Services/PaymentService/PaymentService.Api/Dockerfile
 
-
     web.apigateway:
         container_name: container_webapigateway
         image: ${DOCKER_REGISTRY-}webapigateway
         build:
             context: .
             dockerfile: src/ApiGateways/WebApiGateway/Web.ApiGateway/Dockerfile
+
+    notificationservicee:
+        container_name: container_notificationservicee
+        image: ${DOCKER_REGISTRY-}notificationservicee
+        build:
+          context: .
+          dockerfile: src/Services/NotificationService/NotificationServicee/Dockerfile
 
     #webapp:
     #    container_name: container_blazoruiapp

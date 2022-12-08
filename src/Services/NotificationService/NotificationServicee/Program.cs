@@ -3,7 +3,7 @@ using EventBus.Base.Abstraction;
 using EventBus.Factory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NotificationService.IntegrationEvents.EventHandlers;
+using NotificationServicee.IntegrationEvents.EventHandlers;
 using PaymentService.Api.IntegrationEvents.Events;
 using RabbitMQ.Client;
 using Serilog;
@@ -69,7 +69,7 @@ namespace NotificationService
             get
             {
                 return new ConfigurationBuilder()
-                    .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+                    .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile($"Configurations/serilog.json", optional: false)
                     .AddJsonFile($"Configurations/serilog.{env}.json", optional: true)
                     .AddEnvironmentVariables()
