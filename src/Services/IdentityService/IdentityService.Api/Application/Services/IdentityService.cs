@@ -12,11 +12,9 @@ namespace IdentityService.Application.Services
     {
         public Task<LoginResponseModel> Login(LoginRequestModel requestModel)
         {
-            // DB Process will be here. Check if user information is valid and get details
-
             var claims = new Claim[]
             {
-                new Claim(ClaimTypes.NameIdentifier, requestModel.UserName),
+                new Claim(ClaimTypes.NameIdentifier, requestModel.Email),
                 new Claim(ClaimTypes.Name, "Emre Erkoca"),
             };
 
@@ -31,7 +29,7 @@ namespace IdentityService.Application.Services
             LoginResponseModel response = new()
             {
                 UserToken = encodedJwt,
-                UserName = requestModel.UserName
+                UserName = requestModel.Email
             };
 
             return Task.FromResult(response);

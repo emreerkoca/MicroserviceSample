@@ -1,12 +1,12 @@
+using IdentityService.Api.Extensions;
+using IdentityService.Api.Infrastructure.Context;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IdentityService.Api
 {
@@ -48,7 +48,15 @@ namespace IdentityService.Api
 
             Log.Logger.Information("Application is Running....");
 
-            CreateHostBuilder(args).Build().Run();
+            IHost host = CreateHostBuilder(args).Build();
+
+            host.MigrateDbContext<IdentityContext>((context, services) =>
+            {
+            });
+
+            Log.Information("Application is Running....");
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -1,4 +1,5 @@
 using HealthChecks.UI.Client;
+using IdentityService.Api.Extensions.Registration;
 using IdentityService.Application.Services;
 using IdentityService.Extensions.Registration;
 using Microsoft.AspNetCore.Builder;
@@ -36,6 +37,8 @@ namespace IdentityService.Api
 
             services.AddHealthChecks()
                 .AddCheck("self", () => HealthCheckResult.Healthy());
+
+            services.ConfigureDbContext(Configuration);
 
             services.ConfigureConsul(Configuration);
 

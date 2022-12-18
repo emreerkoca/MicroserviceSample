@@ -43,8 +43,8 @@ namespace IdentityService.Extensions.Registration
             };
 
             logger.LogInformation("Registering with Consul");
-            consulClient.Agent.ServiceDeregister(registration.ID).Wait();
-            consulClient.Agent.ServiceRegister(registration).Wait();
+            //consulClient.Agent.ServiceDeregister(registration.ID).Wait();
+            //consulClient.Agent.ServiceRegister(registration).Wait();
 
             lifetime.ApplicationStopping.Register(() =>
             {
