@@ -19,6 +19,12 @@ namespace IdentityService.Api.Infrastructure.EntityConfigurations
             builder.Property(m => m.Password)
                 .IsRequired();
 
+            builder.Property(m => m.IsDeleted)
+                .HasDefaultValue(false);
+
+            builder.Property(m => m.IsEmailConfirmed)
+                .HasDefaultValue(false);
+
             builder.Property(m => m.CreateDate)
                 .IsRequired();
         }
